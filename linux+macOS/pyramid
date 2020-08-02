@@ -1,0 +1,82 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;33m'
+
+if [ -f /usr/local/bin/projectstack.csv ]
+then
+
+    if [ "$1" == "--set" ]
+    then
+        if [ "$#" == 2 ]
+        then
+            python3 /usr/local/bin/pyramidpy.py "$@"
+        else
+            python3 /usr/local/bin/pyramidpy.py "$@"
+        fi
+
+    elif [ "$#" == 0 ]
+    then
+
+        python3 /usr/local/bin/pyramidpy.py "--show-stack"
+
+
+    elif [ "$1" == "--show-stack" ]
+    then
+
+
+        python3 /usr/local/bin/pyramidpy.py "--show-stack"
+
+
+    elif [ "$1" == "--update" ]
+    then
+
+            python3 /usr/local/bin/pyramidpy.py "$1"
+
+
+    elif [ "$1" == "--chdir" ] || [ "$1" == "-cd" ]
+    then
+
+        var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p')
+        cd $var
+
+    elif [ "$1" == "--tree" ]
+    then
+        lines=$(wc -l /usr/local/bin/projectstack.csv | awk '{ print $1 }')
+        if [[ "$lines" -gt 1 ]]
+        then
+            var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo) ; echo -e "${GREEN}[HEAD Project Tree] ~ ${NC}"
+            tree $var
+        else
+            echo "project stack is currently empty."
+        fi
+
+    elif [ "$1" == "--pop" ]
+    then
+        python3 /usr/local/bin/pyramidpy.py "$1"
+
+    elif [ "$1" == "--push" ]
+    then
+        python3 /usr/local/bin/pyramidpy.py "$@"
+
+
+    elif [ "$1" == "--help" ] || [ "$1" == "-h" ]
+    then
+        python3 /usr/local/bin/pyramid-help.py
+
+    else
+        echo "Invalid options, try --help | -h for assistance."
+    fi
+
+
+
+else
+    echo -e "${RED}No projectstack found."
+    echo -e "${GREEN}creating one ..${NC}"
+    touch /usr/local/bin/projectstack.csv
+    python3 /usr/local/bin/pyramidpy.py --set
+
+
+
+fi
