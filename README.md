@@ -9,10 +9,20 @@ stack and then can be frequently changed into any of those directories for furth
  
     
     
-     
-    
-    
+## Dependencies for Shell and Python3
 
+```bash
+
+    # Tree command 
+    sudo apt install tree
+
+    # Python dependencies
+    pip3 install -r requirements.txt
+
+
+```
+    
+    
 
 
 ## Usage
