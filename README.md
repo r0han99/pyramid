@@ -2,15 +2,16 @@
 
 ## Description
 
-    The pyramid utility creates and 
-    visualises your ongoing or upcoming 
-    project directories like a stack 
-    structure where, your current most 
-    frequently used project directory 
-    paths(absolute) are pushed into the 
-    stack and then can be frequently 
-    changed into any of those directories 
-    for furthur work.
+The **pyramid** utility creates  and visualises your ongoing or upcoming 
+project directories like a **stack-structure** where, your current most                   
+frequently used project directory paths(absolute) are pushed into the  
+stack and then can be frequently changed into any of those directories for furthur work which is one the other efficient things that this utility can handle.
+ 
+    
+    
+     
+    
+    
 
 
 
@@ -35,4 +36,6 @@
 ```
 
 
-### [E n d]
+
+
+##### [End]
