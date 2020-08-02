@@ -13,8 +13,11 @@ stack and then can be frequently changed into any of those directories for furth
 
 ```bash
 
-    # Tree command 
-    sudo apt install tree
+    # Tree command ~ Linux
+    sudo apt install tree # or
+
+    # MacOS
+    brew install tree
 
     # Python dependencies
     pip3 install -r requirements.txt
