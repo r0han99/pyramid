@@ -26,7 +26,7 @@ class color:
 
 def __SHOW_STACK(showindexflag,msg='default'):
 
-    with open('/usr/local/bin/projectstack.csv','r') as f:
+    with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','r') as f:
         reader = csv.reader(f)
         headflag = 0
         next(reader)
@@ -51,7 +51,7 @@ def __SHOW_STACK(showindexflag,msg='default'):
     print('\n')
 
 def CHANGE_STACK():
-    df = pd.read_csv('/usr/local/bin/projectstack.csv')
+    df = pd.read_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv')
 
     if (np.unique(df['priority'][0] == 99)):
         print(color.GREEN+'Current Project Stack'+color.END)
@@ -73,7 +73,7 @@ def CHANGE_STACK():
                             df['priority'] = 0
                             df.at[priorityinp, 'priority']= 99
                             df = df.sort_values(by='priority',ascending=False)
-                            df.to_csv('/usr/local/bin/projectstack.csv',index=False,encoding='utf-8')
+                            df.to_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv',index=False,encoding='utf-8')
                             break
                         else:
                             print(color.RED+'Invalid input,'+color.BOLD+' re-enter!'+color.END)
@@ -97,14 +97,14 @@ def CHANGE_STACK():
 try:
     if sys.argv[1] == '--set':
     
-        if(os.stat('/usr/local/bin/projectstack.csv').st_size == 0):
+        if(os.stat(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv').st_size == 0):
             print('project stack is currently '+color.RED+'empty.'+color.END+'\nSetting a header. use'+color.GREEN+' --set flag or --help for assistance.'+color.END)
 
-            with open('/usr/local/bin/projectstack.csv','w') as obj:
+            with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','w') as obj:
                 writer = csv.writer(obj)
                 writer.writerows(content)
 
-        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 25 and len(sys.argv) == 2):
+        elif(os.stat(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv').st_size == 25 and len(sys.argv) == 2):
             print('creating a project stack.\n')
             print('There are no project paths present. invoking'+color.RED+' --push-recursive'+color.END)
             while True:
@@ -123,7 +123,7 @@ try:
                         init_prior = 0
                         flag+=1
 
-                    with open('/usr/local/bin/projectstack.csv','w') as f:
+                    with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','w') as f:
                         writer = csv.writer(f)
                         writer.writerows(content)
                         print('Paths Set in the Stack')
@@ -172,7 +172,7 @@ try:
                         init_prior=0
                         flag+=1
 
-                    with open('/usr/local/bin/projectstack.csv','w') as f:
+                    with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','w') as f:
                         writer = csv.writer(f)
                         writer.writerows(content)
                         print('Paths Set in the Stack')
@@ -190,7 +190,7 @@ try:
             CHANGE_STACK()
 
 
-        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 25 and len(sys.argv) == 3 ):
+        elif(os.stat(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv').st_size == 25 and len(sys.argv) == 3 ):
 
             print('['+color.GREEN+'Parsing file with paths.'+color.END+']')
             if( len(sys.argv) == 3):
@@ -207,7 +207,7 @@ try:
                         init_prior = 0
                         flag+=1
 
-                    with open('/usr/local/bin/projectstack.csv','w') as f:
+                    with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','w') as f:
                         writer = csv.writer(f)
                         writer.writerows(content)
                         print('Paths Set in the Stack')
@@ -229,7 +229,7 @@ try:
 
 
     elif (sys.argv[1] == '--show-stack'):
-        f = open('/usr/local/bin/projectstack.csv','r')
+        f = open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','r')
         lines = len(f.readlines())
         f.close()
         if lines > 1:
@@ -239,7 +239,7 @@ try:
             print('project stack is '+color.RED+'empty.'+color.END+' do'+color.GREEN+' ```pwd | xargs pyramid --push``` '+color.END+'in you project directory.\n'+color.BLUE+'(or)'+color.GREEN+'\n--help | -h'+color.END+' for assistance.')
 
     elif (sys.argv[1] == '--update'):
-        df = pd.read_csv('/usr/local/bin/projectstack.csv')
+        df = pd.read_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv')
 
 
         if len(df) >= 2:
@@ -256,7 +256,7 @@ try:
                             df['priority'] = 0
                             df.at[priorityinp, 'priority']= 99
                             df = df.sort_values(by='priority',ascending=False)
-                            df.to_csv('/usr/local/bin/projectstack.csv',index=False,encoding='utf-8')
+                            df.to_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv',index=False,encoding='utf-8')
                             break
                         else:
                             print(color.RED+'invalid index,'+color.BOLD+'re-enter'+color.END)
@@ -276,30 +276,30 @@ try:
 
     elif (sys.argv[1] == '--pop'):
 
-        f = open('/usr/local/bin/projectstack.csv','r')
+        f = open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','r')
         lines = len(f.readlines())
         f.close()
 
         if lines > 1:
 
-            with open('/usr/local/bin/projectstack.csv','r') as f:
+            with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','r') as f:
                     content = f.readlines()
                     LINES = len(content)
 
                     if (LINES != 2):
                         del content[1]
-                        with open('/usr/local/bin/projectstack.csv','w') as f:
+                        with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','w') as f:
                             f.writelines(content)
 
-                        df = pd.read_csv('/usr/local/bin/projectstack.csv')
+                        df = pd.read_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv')
                         df.at[0, 'priority']= 99
-                        df.to_csv('/usr/local/bin/projectstack.csv',index=False, encoding='utf-8')
+                        df.to_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv',index=False, encoding='utf-8')
 
                         if (np.unique(df['priority'][0] == 99)):
 
                             print(color.GREEN+'Current Project Stack'+color.END)
                             __SHOW_STACK(showindexflag=True)
-                            with open('/usr/local/bin/projectstack.csv','r') as f:
+                            with open(str(os.getenv("HOME"))+'/Document/.projectstackdb/projectstack.csv','r') as f:
 
                                 content = f.readlines()
                                 LINES = len(content)
@@ -320,7 +320,7 @@ try:
                                                     df['priority'] = 0
                                                     df.at[priorityinp, 'priority']= 99
                                                     df = df.sort_values(by='priority',ascending=False)
-                                                    df.to_csv('/usr/local/bin/projectstack.csv',index=False,encoding='utf-8')
+                                                    df.to_csv(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv',index=False,encoding='utf-8')
                                                     break
                                                 else:
                                                     print(color.RED+'Invalid index,'+color.BOLD+' re-enter!'+color.END)
@@ -365,7 +365,7 @@ try:
         try:
             path = sys.argv[2]
             pathlist = []
-            with open('/usr/local/bin/projectstack.csv','r') as f:
+            with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','r') as f:
                 reader = csv.DictReader(f)
                 for row in reader:
                     pathlist.append(row['abs_path'])
@@ -373,7 +373,7 @@ try:
             if(path not in pathlist):
                 path = sys.argv[2]
                 alias = path.split('/')[-1].strip()
-                with open('/usr/local/bin/projectstack.csv','a') as f:
+                with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','a') as f:
                     f.write(alias+','+path+',0')
 
                 print('path added,do'+color.GREEN+' --show-stack to visualize'+color.END)

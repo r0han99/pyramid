@@ -4,7 +4,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 GREEN='\033[0;33m'
 
-if [ -f /usr/local/bin/projectstack.csv ]
+if [ -f ~/Documents/.projectstackdb/projectstack.csv ]
 then
 
     if [ "$1" == "--set" ]
@@ -74,8 +74,16 @@ then
 else
     echo -e "${RED}No projectstack found."
     echo -e "${GREEN}creating one ..${NC}"
-    touch /usr/local/bin/projectstack.csv
+    echo -e "${GREEN}Handleling Permissions .."
+    sudo mkdir ~/Documents/.projectstackdb/
+    sudo chmod 777 ~/Documents/.projectstackdb/
+    sudo touch ~/Documents/.projectstackdb/projectstack.csv
+    sudo chmod 777 ~/Documents/.projectstackdb/projectstack.csv
+    echo -e "${GREEN}Project Stack Established!."
+
     python3 /usr/local/bin/pyramidpy.py --set
+
+
 
 
 
