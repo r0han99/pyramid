@@ -49,10 +49,10 @@ stack and then can be frequently changed into any of those directories for furth
 ## Example
 
 ```bash
-        
     pyramid --show-stack
 ```
 
+![Project Stack](https://user-images.githubusercontent.com/45916202/89435668-d182d280-d762-11ea-9b46-c18ba532686c.jpg)
 
 
 
