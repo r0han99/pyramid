@@ -75,6 +75,7 @@ else
     echo -e "${RED}No projectstack found."
     echo -e "${GREEN}creating one ..${NC}"
     touch /usr/local/bin/projectstack.csv
+    echo -e "${GREEN}Project Stack Established!."
     python3 /usr/local/bin/pyramidpy.py --set
 
 
