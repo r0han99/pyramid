@@ -31,6 +31,12 @@ print('         '+'\033[1m'+'--show-stack'+'\033[0m'+'                     Visua
 
 print('\n')
 
+print('         '+'\033[1m'+'-cd | --chdir'+'\033[0m'+'                    Changes into the Absolute path which is poited by the HEAD, or simply changes to the top-element of the Project Stack. Theres is Catch for using this option, one must do ```source pyramid --push``` in order to change the directory,since sourcing the commmand will make the changes in the current shell.') 
+
+
+
+print('\n')
+
 
 
 print('         '+'\033[1m'+'--tree'+'\033[0m'+'                           invokes tree command to visualise the tree structure of the top[HEAD] project directory in the stack ')
