@@ -374,7 +374,7 @@ try:
                 path = sys.argv[2]
                 alias = path.split('/')[-1].strip()
                 with open(str(os.getenv("HOME"))+'/Documents/.projectstackdb/projectstack.csv','a') as f:
-                    f.write(alias+','+path+',0')
+                    f.write(alias+','+path+',0\n')
 
                 print('path added,do'+color.GREEN+' --show-stack to visualize'+color.END)
             else:
