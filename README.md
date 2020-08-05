@@ -1,5 +1,10 @@
 # The pyramid utility
 
+
+![Workflow](https://user-images.githubusercontent.com/45916202/89409391-9c18bd80-d73f-11ea-875b-d949783e185e.jpg)
+
+
+
 ## Description
 
 The **pyramid** utility creates  and visualises your ongoing or upcoming 
