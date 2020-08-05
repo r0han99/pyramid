@@ -14,7 +14,7 @@ then
             python3 /usr/local/bin/pyramidpy.py "$@"
         else
             python3 /usr/local/bin/pyramidpy.py "$@"
-        fi
+        fi/usr/local/bin/pyramidpy.py
 
     elif [ "$#" == 0 ]
     then
@@ -38,15 +38,15 @@ then
     elif [ "$1" == "--chdir" ] || [ "$1" == "-cd" ]
     then
 
-        var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p')
+        var=$(cat ~/Documents/.projectstackdb/projectstack.csv | cut -d ',' -f 2 | sed -n '2p')
         cd $var
 
     elif [ "$1" == "--tree" ]
     then
-        lines=$(wc -l /usr/local/bin/projectstack.csv | awk '{ print $1 }')
+        lines=$(wc -l ~/Documents/.projectstackdb/projectstack.csv | awk '{ print $1 }')
         if [[ "$lines" -gt 1 ]]
         then
-            var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo) ; echo -e "${GREEN}[HEAD Project Tree] ~ ${NC}"
+            var=$(cat ~/Documents/.projectstackdb/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo) ; echo -e "${GREEN}[HEAD Project Tree] ~ ${NC}"
             tree $var
         else
             echo "project stack is currently empty."
