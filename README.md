@@ -7,7 +7,7 @@
 
 ## Description
 
-The **pyramid** utility creates  and visualises your ongoing or upcoming 
+The **pyramid** utility creates  and visualises your ongoing and anticipated
 project directories like a **stack-structure** where, your current most                   
 frequently used project directory paths(absolute) are pushed into the  
 stack and then can be frequently changed into any of those directories for furthur work which is one of the 'n' other efficient things that this utility can handle.
