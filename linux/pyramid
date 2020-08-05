@@ -14,8 +14,7 @@ then
             python3 /usr/local/bin/pyramidpy.py "$@"
         else
             python3 /usr/local/bin/pyramidpy.py "$@"
-        fi/usr/local/bin/pyramidpy.py
-
+        fi
     elif [ "$#" == 0 ]
     then
 
