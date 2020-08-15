@@ -1,3 +1,4 @@
+#!/opt/anaconda3/bin/python
 
 import os
 import re
@@ -6,7 +7,7 @@ import sys
 import pandas as pd
 import numpy as np
 
-content = [['alias','abs_path','priority']]
+content = [['alias','abs_path','priority','hexid']]
 
 init_prior = 99
 
@@ -24,14 +25,16 @@ class color:
 
 
 
-def __SHOW_STACK(showindexflag,msg='default'):
 
+def __SHOW_STACK(showindexflag,msg='default',shortform=False):
+    
     with open('/usr/local/bin/projectstack.csv','r') as f:
         reader = csv.reader(f)
         headflag = 0
         next(reader)
         if(showindexflag):
             print()
+            
             for index,row in enumerate(reader,0):
                 if headflag == 0:
                     print('Index - '+str(index)+'  {}  '.format(row[1])+'(alias'+color.RED+'({})'.format(row[0])+color.END+')'+color.BOLD+color.RED+' <<< HEAD['+color.WARNING+msg+color.RED+color.BOLD+']'+color.END)
@@ -40,15 +43,40 @@ def __SHOW_STACK(showindexflag,msg='default'):
                     print('Index - '+str(index)+'  {}  '.format(row[1])+'(alias'+color.RED+'({})'.format(row[0])+color.END+')')
         else:
             print()
-            for row in reader:
-                if headflag == 0:
-                    print(color.RED+color.BOLD+'HEAD >>>'+color.END+' {}  '.format(row[1])+'(alias'+color.RED+'({})'.format(row[0])+color.END+')')
-                    headflag+=1
-                else:
-                    print(color.WARNING+"                     |                        "+color.END)
-                    print('        {}  '.format(row[1])+'(alias'+color.RED+'({})'.format(row[0])+color.END+')')
+            
+            if (not shortform):
+                for row in reader:
+                    if len(row[1]) > 100:
+                        row[1] = '/'+'/'.join(row[1].split('/')[5:])
+                        if headflag == 0:
+                            print(color.RED+color.BOLD+'HEAD >>>'+color.END+color.WARNING+' ~'+color.END+'{}  '.format(row[1])+'(HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+                            headflag+=1
+                        else:
+                            print(color.WARNING+"                     ||                        "+color.END)
+                            print(color.WARNING+'        ~'+color.END+'{}  '.format(row[1])+'(HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+                    else:
+                        if headflag == 0:
+                            print(color.RED+color.BOLD+'HEAD >>>'+color.END+' {}  '.format(row[1])+'(HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+                            headflag+=1
+                        else:
+                            print(color.WARNING+"                     ||                       "+color.END)
+                            print('         {}  '.format(row[1])+'(HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+            else:
+                for row in reader:
+                    if headflag == 0:
+                        print(color.RED+color.BOLD+'HEAD >>>'+color.END+' {: <30s}  '.format(row[0])+'     (HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+                        headflag+=1
+                    else:
+                        print(color.WARNING+"           |            "+color.END)
+                        print('         {: <30s}  '.format(row[0])+'     (HEX-ID'+color.RED+'({})'.format(row[3])+color.END+')')
+
+                    
+
+
+
 
     print('\n')
+
 
 def CHANGE_STACK():
     df = pd.read_csv('/usr/local/bin/projectstack.csv')
@@ -96,7 +124,7 @@ def CHANGE_STACK():
 
 try:
     if sys.argv[1] == '--set':
-    
+        
         if(os.stat('/usr/local/bin/projectstack.csv').st_size == 0):
             print('project stack is currently '+color.RED+'empty.'+color.END+'\nSetting a header. use'+color.GREEN+' --set flag or --help for assistance.'+color.END)
 
@@ -104,7 +132,7 @@ try:
                 writer = csv.writer(obj)
                 writer.writerows(content)
 
-        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 25 and len(sys.argv) == 2):
+        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 31 and len(sys.argv) == 2):
             print('creating a project stack.\n')
             print('There are no project paths present. invoking'+color.RED+' --push-recursive'+color.END)
             while True:
@@ -116,10 +144,16 @@ try:
                     flag = 1
                     print()
                     for path in paths:
+                        for x in np.random.randint(10000,99999,25):
+                            hexid = str(hex(x))[2:] if len(str(hex(x))[2:]) != 5 else str(hex(x))[3:]
+                            if(re.search(r"[a-z]{1}",hexid)):
+                                break
+                            else:
+                                continue
 
                         print(flag,path)
 
-                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior])
+                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior,hexid])
                         init_prior = 0
                         flag+=1
 
@@ -166,9 +200,15 @@ try:
 
                     flag = 1
                     for path in pathsread:
+                        for x in np.random.randint(10000,99999,25):
+                            hexid = str(hex(x))[2:] if len(str(hex(x))[2:]) != 5 else str(hex(x))[3:]
+                            if(re.search(r"[a-z]{1}",hexid)):
+                                break
+                            else:
+                                continue
 
                         print(flag,path)
-                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior])
+                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior,hexid])
                         init_prior=0
                         flag+=1
 
@@ -190,7 +230,7 @@ try:
             CHANGE_STACK()
 
 
-        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 25 and len(sys.argv) == 3 ):
+        elif(os.stat('/usr/local/bin/projectstack.csv').st_size == 31 and len(sys.argv) == 3 ):
 
             print('['+color.GREEN+'Parsing file with paths.'+color.END+']')
             if( len(sys.argv) == 3):
@@ -201,9 +241,15 @@ try:
                         pathsread = f.readlines()
                     flag = 1
                     for path in pathsread:
+                        for x in np.random.randint(10000,99999,25):
+                            hexid = str(hex(x))[2:] if len(str(hex(x))[2:]) != 5 else str(hex(x))[3:]
+                            if(re.search(r"[a-z]{1}",hexid)):
+                                break
+                            else:
+                                continue
 
                         print(flag,path)
-                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior])
+                        content.insert(flag,[path.split('/')[-1].strip(),path.strip(),init_prior,hexid])
                         init_prior = 0
                         flag+=1
 
@@ -233,8 +279,17 @@ try:
         lines = len(f.readlines())
         f.close()
         if lines > 1:
+            if len(sys.argv) == 3:
+                if sys.argv[2] == '--simple' or sys.argv[2] == '-simp':
+                    __SHOW_STACK(False,shortform=True)
+                elif sys.argv[2] == '-fstack' or sys.argv[2] == '--full-stack':
+                    __SHOW_STACK(False,shortform=False)
+                else:
+                    __SHOW_STACK(False)
+            else:
+                __SHOW_STACK(False)
 
-            __SHOW_STACK(False)
+            
         else:
             print('project stack is '+color.RED+'empty.'+color.END+' do'+color.GREEN+' ```pwd | xargs pyramid --push``` '+color.END+'in you project directory.\n'+color.BLUE+'(or)'+color.GREEN+'\n--help | -h'+color.END+' for assistance.')
 
@@ -362,6 +417,13 @@ try:
 
 
     elif sys.argv[1] == '--push':
+        for x in np.random.randint(10000,99999,25):
+            hexid = str(hex(x))[2:] if len(str(hex(x))[2:]) != 5 else str(hex(x))[3:]
+            if(re.search(r"[a-z]{1}",hexid)):
+                break
+            else:
+                continue
+
         try:
             path = sys.argv[2]
             pathlist = []
@@ -374,7 +436,7 @@ try:
                 path = sys.argv[2]
                 alias = path.split('/')[-1].strip()
                 with open('/usr/local/bin/projectstack.csv','a') as f:
-                    f.write(alias+','+path+',0\n')
+                    f.write(alias+','+path+',0,'+hexid+'\n')
 
                 print('path added,do'+color.GREEN+' --show-stack to visualize'+color.END)
             else:

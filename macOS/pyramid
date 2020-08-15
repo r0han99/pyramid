@@ -22,11 +22,19 @@ then
         python3 /usr/local/bin/pyramidpy.py "--show-stack"
 
 
-    elif [ "$1" == "--show-stack" ]
+    elif [ "$1" == "--show" ] || [ "$1" == "-s" ]
     then
+        if [ "$2" == "--simple" ] || [ "$2" == "-simp" ]
+        then
+            python3 /usr/local/bin/pyramidpy.py "--show-stack" "$2"
 
+        elif [ "$2" == "--full-stack" ] || [ "$2" == "-fstack" ]
+        then
+            python3 /usr/local/bin/pyramidpy.py "--show-stack" "$2"
+        else
+            python3 /usr/local/bin/pyramidpy.py "--show-stack"
+        fi
 
-        python3 /usr/local/bin/pyramidpy.py "--show-stack"
 
 
     elif [ "$1" == "--update" ]
@@ -37,20 +45,52 @@ then
 
     elif [ "$1" == "--chdir" ] || [ "$1" == "-cd" ]
     then
-
-        var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p')
-        cd $var
-
+      
+             if [ "$#" == 2 ]
+            then
+                  
+                if [ ${#2} -eq 4 ]
+                then
+                    search=$(egrep $2 /usr/local/bin/projectstack.csv | cut -d ',' -f 2)
+                    cd $search  
+                else
+                    echo -e "${RED}Invalid Hex-ID, ${NC}${GREEN}{chdir}${NC}"
+                    echo -e "do pyramid ${GREEN}--show-stack${NC} to display Hex-Id's."
+                fi
+            
+            else
+                echo ""
+                var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p')
+                cd $var
+            
+             fi 
+     
     elif [ "$1" == "--tree" ]
     then
-        lines=$(wc -l /usr/local/bin/projectstack.csv | awk '{ print $1 }')
-        if [[ "$lines" -gt 1 ]]
-        then
-            var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo) ; echo -e "${GREEN}[HEAD Project Tree] ~ ${NC}"
-            tree $var
-        else
-            echo "project stack is currently empty."
-        fi
+        
+            if [ "$#" == 2 ]
+            then
+                if [ ${#2} -eq 4 ]
+                then
+                    search=$(egrep $2 /usr/local/bin/projectstack.csv | cut -d ',' -f 2)
+                    echo -e ${GREEN}$2" - Directory Tree"${NC}
+                    tree $search
+                 else
+                    echo -e "${RED}Invalid Hex-ID, ${NC}${GREEN}{tree}${NC}"
+                    echo -e "do pyramid ${GREEN}--show-stack${NC} to display Hex-Id's."
+                 fi
+
+            else
+                lines=$(wc -l /usr/local/bin/projectstack.csv | awk '{ print $1 }')
+                if [[ "$lines" -gt 1 ]]
+                then
+                    var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo) ; echo -e "${GREEN}[HEAD Project Tree] ~ ${NC}"
+                    tree $var
+                else
+                    echo "project stack is currently empty."
+                fi
+            fi
+       
 
     elif [ "$1" == "--pop" ]
     then
@@ -60,13 +100,35 @@ then
     then
         python3 /usr/local/bin/pyramidpy.py "$@"
 
+    elif [ "$1" == "--open" ]
+    then
+        
+        
+            if [ "$#" == 2 ]
+            then
+                if [ ${#2} -eq 4 ]
+                then
+                    search=$(egrep $2 /usr/local/bin/projectstack.csv | cut -d ',' -f 2)
+                    open $search  
+                 else
+                    echo -e "${RED}Invalid Hex-ID, ${NC}${GREEN}{open}${NC}"
+                    echo -e "do pyramid ${GREEN}--show-stack${NC} to display Hex-Id's."
+                fi
+            
+            else
+                var=$(cat /usr/local/bin/projectstack.csv | cut -d ',' -f 2 | sed -n '2p' | xargs echo)
+                open $var
+            fi
+       
+        
+
 
     elif [ "$1" == "--help" ] || [ "$1" == "-h" ]
     then
         python3 /usr/local/bin/pyramid-help.py
-
+        
     else
-        echo "Invalid options, try --help | -h for assistance."
+        echo -e "${RED}Invalid options, try ${GREEN}--help | -h${NC}${RED} for assistance.${NC}"
     fi
 
 
@@ -75,7 +137,7 @@ else
     echo -e "${RED}No projectstack found."
     echo -e "${GREEN}creating one ..${NC}"
     touch /usr/local/bin/projectstack.csv
-    echo -e "${GREEN}Project Stack Established!."
+    echo -e "${GREEN}Project Stack Established!.${NC}"
     python3 /usr/local/bin/pyramidpy.py --set
 
 
