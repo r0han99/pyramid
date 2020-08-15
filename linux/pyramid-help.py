@@ -1,3 +1,4 @@
+#!/opt/anaconda3/bin/python
 
 print('\n\n')
 
@@ -23,38 +24,42 @@ print('The following options available.')
 
 print('\n')
 
-print('         '+'\033[1m'+'--set'+'\033[0m'+'  [filename.txt]?             sets the absolute-paths into the stack in bulk,either through a file with paths or during the run-time.')
+print('         '+'\033[1m'+'--set [filename.txt]?'+'\033[0m'+'          sets the absolute-paths into the stack in bulk,either through a file with paths or during the run-time.')
 
 print('\n')
 
-print('         '+'\033[1m'+'--show-stack'+'\033[0m'+'                     Visualizes the stack with all the project directory paths')
+print('         '+'\033[1m'+'--show | -s  [[--full-stack | -fstack] | [--simple | -simp]]'+'\033[0m'+'    Visualizes the stack with all the project directory paths by default, with --simple argument the stack output will be normalised.')
 
 print('\n')
 
-print('         '+'\033[1m'+'-cd | --chdir'+'\033[0m'+'                    Changes into the Absolute path which is poited by the HEAD, or simply changes to the top-element of the Project Stack. Theres is Catch for using this option, one must do ```source pyramid --push``` in order to change the directory,since sourcing the commmand will make the changes in the current shell.') 
+print('         '+'\033[1m'+'-cd | --chdir [Hex-id]'+'\033[0m'+'         Changes into the Absolute path which is poited by the HEAD, or simply changes to the top-element of the Project Stack. Theres is Catch for using this option, one must do ```source pyramid --push``` in order to change the directory,since sourcing the commmand will make the changes in the current shell or Provide a HEX-ID as an additional option to change to directory of that particular HEX-ID') 
 
-
-
-print('\n')
-
-
-
-print('         '+'\033[1m'+'--tree'+'\033[0m'+'                           invokes tree command to visualise the tree structure of the top[HEAD] project directory in the stack ')
 
 
 print('\n')
 
-print('         '+'\033[1m'+'--push'+'\033[0m'+'                           using ```pwd | xargs pyramid --push``` the absolute path of the current directory can be pushed into the project-stack.')
+
+
+print('         '+'\033[1m'+'--tree [Hex-id]'+'\033[0m'+'                invokes tree command to visualise the tree structure of the top[HEAD] project directory in the stack or if HEX-ID is provided the Tree structure of that absolute path is visualised.')
+
+print('\n')
+
+print('         '+'\033[1m'+'--open [Hex-id]'+'\033[0m'+'                Taking advantage of the MacOS ``open-command``, you can open the Directory GUI with this flag or with HEX-ID as a second flag you can open project-directory of that HEX-ID.')
 
 
 print('\n')
 
-print('         '+'\033[1m'+'--pop'+'\033[0m'+'                             pops out the head directory path from the project-stack.')
+print('         '+'\033[1m'+'--push'+'\033[0m'+'                         using ```pwd | xargs pyramid --push``` the absolute path of the current directory can be pushed into the project-stack.')
 
 
 print('\n')
 
-print('         '+'\033[1m'+'--update'+'\033[0m'+'             updates the stack-pointer [HEAD] to whatever the input given.')
+print('         '+'\033[1m'+'--pop'+'\033[0m'+'                          pops out the head directory path from the project-stack.')
+
+
+print('\n')
+
+print('         '+'\033[1m'+'--update'+'\033[0m'+'                       updates the stack-pointer [HEAD] to whatever the input given.')
 
 
 print('\n')
