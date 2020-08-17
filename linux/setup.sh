@@ -10,6 +10,7 @@ then
     echo ""
     sudo apt install python3-pip
     sudo apt install tree
+    sudo apt install xdg-open
     pip3 install pandas
     echo ""
     echo "Dependencies, Installed."
