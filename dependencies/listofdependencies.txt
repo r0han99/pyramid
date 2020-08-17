@@ -1,5 +1,7 @@
 pip-independent
 	* Tree command
+	* xdg-open for linux
+
 
 pip/pip3 ~ python3 
 
