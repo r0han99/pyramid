@@ -19,12 +19,18 @@ stack and then can be frequently changed into any of those directories for furth
 ```bash
 
     # Tree command ~ Linux
-    sudo apt install tree # or
-
+    sudo apt install tree 
+    
+    #and 
+    
+    # xdg-open utility ~ Linux
+    sudo apt install xdg-open
+   
     # MacOS
     brew install tree
 
-    # Python dependencies
+    
+    # Python dependencies ~ { Linux,MacOS }
     pip3 install -r requirements.txt
 
 
