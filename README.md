@@ -30,6 +30,14 @@ stack and then can be frequently changed into any of those directories for furth
 
 ```
     
+## Installation for Linux
+```bash
+   
+   cd linux/
+   
+   ./setup.sh
+
+```
     
 
 
@@ -50,14 +58,16 @@ stack and then can be frequently changed into any of those directories for furth
 
 ```bash
     pyramid -s --simple 
+    
           #(or)
+          
     pyramid -s --full-stack
 ```
 
 ![workflow2 copy](https://user-images.githubusercontent.com/45916202/90318641-7d8ca080-df4f-11ea-80b3-f767f687cfc0.jpg)
 
 
-## V1.0.1
+## V1.0.1 Features
 
 <img width="1226" alt="Version1 0 1_features" src="https://user-images.githubusercontent.com/45916202/90318673-c3496900-df4f-11ea-9e1b-2f1102bed71a.png">
 
