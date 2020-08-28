@@ -2,7 +2,7 @@
 
 ![pyramid0](https://user-images.githubusercontent.com/45916202/91566881-e61d4980-e961-11ea-8ad2-5800327af3bd.jpg)
 
-
+```Artwork```
 
 
 ## Setup WorkFlow
@@ -16,12 +16,10 @@
 ## Description
 
 The **pyramid** utility creates  and visualises your ongoing and anticipated
-project directories like a **stack-structure** where, your current most                   
-frequently used project directory paths(absolute) are pushed into the  
-stack and then can be frequently changed into any of those directories for furthur work which is one of the 'n' other efficient things that this utility can handle.
- 
-    
-    
+frequently used directories in the command-line, like a **stack-structure** where, you can now access this stack using the command with the coded params and effiently change into the 
+those directories without having to almost type the entire path everytime. This is one of the `n` other things that this utility can handel.
+
+
 ## Dependencies for Shell and Python3
 
 ```bash
