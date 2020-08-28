@@ -28,11 +28,11 @@ print('         '+'\033[1m'+'--set [filename.txt]?'+'\033[0m'+'          sets th
 
 print('\n')
 
-print('         '+'\033[1m'+'--show | -s  [[--full-stack | -fstack] | [--simple | -simp]]'+'\033[0m'+'    Visualizes the stack with all the project directory paths by default, with --simple argument the stack output will be normalised.')
+print('         '+'\033[1m'+'[[ --short | s ] | [ --fstack | f ]'+'\033[0m'+'    Visualizes the stack with all the project directory paths by default, with --simple argument the stack output will be normalised.')
 
 print('\n')
 
-print('         '+'\033[1m'+'-cd | --chdir [Hex-id]'+'\033[0m'+'         Changes into the Absolute path which is poited by the HEAD, or simply changes to the top-element of the Project Stack. Theres is Catch for using this option, one must do ```source pyramid --push``` in order to change the directory,since sourcing the commmand will make the changes in the current shell or Provide a HEX-ID as an additional option to change to directory of that particular HEX-ID') 
+print('         '+'\033[1m'+'cd | --chdir [[Hex-id] | [directory-name char>5]]'+'\033[0m'+'         Changes into the Absolute path which is poited by the HEAD, or simply changes to the top-element of the Project Stack. Theres is Catch for using this option, one must do ```source pyramid --push``` in order to change the directory,since sourcing the commmand will make the changes in the current shell or Provide a HEX-ID as an additional option to change to directory of that particular HEX-ID') 
 
 
 
@@ -40,11 +40,11 @@ print('\n')
 
 
 
-print('         '+'\033[1m'+'--tree [Hex-id]'+'\033[0m'+'                invokes tree command to visualise the tree structure of the top[HEAD] project directory in the stack or if HEX-ID is provided the Tree structure of that absolute path is visualised.')
+print('         '+'\033[1m'+'--tree [[Hex-id] | [directory-name char>5]]'+'\033[0m'+'                invokes tree command to visualise the tree structure of the top[HEAD] project directory in the stack or if HEX-ID is provided the Tree structure of that absolute path is visualised.')
 
 print('\n')
 
-print('         '+'\033[1m'+'--open [Hex-id]'+'\033[0m'+'                Taking advantage of the MacOS ``open-command``, you can open the Directory GUI with this flag or with HEX-ID as a second flag you can open project-directory of that HEX-ID.')
+print('         '+'\033[1m'+'--open [[Hex-id] | [directory-name char>5]]'+'\033[0m'+'                Taking advantage of the MacOS ``open-command``, you can open the Directory GUI with this flag or with HEX-ID as a second flag you can open project-directory of that HEX-ID.')
 
 
 print('\n')
