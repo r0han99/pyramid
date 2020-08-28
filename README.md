@@ -1,5 +1,6 @@
 # The pyramid utility
 
+![pyramid0](https://user-images.githubusercontent.com/45916202/91566881-e61d4980-e961-11ea-8ad2-5800327af3bd.jpg)
 
 
 
@@ -7,7 +8,8 @@
 ## Setup WorkFlow
 
 
-![workflow2](https://user-images.githubusercontent.com/45916202/90318552-e7f11100-df4e-11ea-8ba3-7dacecd73bfa.jpg)
+![workflow3](https://user-images.githubusercontent.com/45916202/91566468-5b3c4f00-e961-11ea-95de-97a188ce47f2.jpg)
+
 
 
 
@@ -69,20 +71,16 @@ stack and then can be frequently changed into any of those directories for furth
 ## Example
 
 ```bash
-    pyramid -s --simple 
+    pyramid s  
     
           #(or)
           
-    pyramid -s --full-stack
+    pyramid f
 ```
-
-![workflow2 copy](https://user-images.githubusercontent.com/45916202/90318641-7d8ca080-df4f-11ea-80b3-f767f687cfc0.jpg)
-
-
-## V1.0.1 Features
-
-<img width="1226" alt="Version1 0 1_features" src="https://user-images.githubusercontent.com/45916202/90318673-c3496900-df4f-11ea-9e1b-2f1102bed71a.png">
+<img width="690" alt="Screenshot 2020-08-28 at 6 44 42 PM" src="https://user-images.githubusercontent.com/45916202/91566648-9b033680-e961-11ea-8299-fded25ebdaf5.png">
 
 
 
-##### [End]
+
+
+#####                                         * * *
