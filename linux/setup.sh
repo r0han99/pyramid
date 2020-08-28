@@ -8,6 +8,7 @@ then
     sudo echo "This a temp file created while entering sudo mode" > .testrootfile.txt
     echo "Installing dependencies .. "
     echo ""
+    sudo apt update && apt upgrade
     sudo apt install python3-pip
     sudo apt install tree
     sudo apt install xdg-open
