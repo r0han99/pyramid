@@ -15,9 +15,10 @@
 
 ## Description
 
-The **pyramid** utility creates  and visualises your ongoing and anticipated
-frequently used directories in the command-line, like a **stack-structure** where, you can now access this stack using the command with the coded params and effiently change into the 
-those directories without having to almost type the entire path everytime. This is one of the `n` other things that this utility can handel.
+The **pyramid** utility creates  and visualises 
+frequently used directories in the command-line, like a **stack-structure** where the most recurrently used directory of your choice will be at the top of the stack. You can now access this stack using the ```pyramid``` command with the coded optional flags and effiently change into the 
+those directories without having to almost type the entire path everytime. 
+This is one of the `n` other things that this utility can handle.
 
 
 ## Dependencies for Shell and Python3
