@@ -80,6 +80,16 @@ This is one of the `n` other things that this utility can handle.
 
 
 
+*** 
+
+_Sneak Peak into V1.0.2_ 
+
+* Interactive compression and packaging functionality.
+* Creating Customised stacks to isolate content.
+* compatibility ++;
+* Eliminating code redundancy.
+* New functionality flags ( del, truncate ).
 
 
-#####                                         * * *
+
+***
