@@ -84,8 +84,8 @@ This is one of the `n` other things that this utility can handle.
 
 _Sneak Peak into V1.0.2_ 
 
-* Interactive compression and packaging functionality.
-* Creating Customised stacks to isolate content.
+* Ability to interactively use inbuilt compression methods (gz,bz2) and packaging (zip) functionality.
+* Ability to create Customised stacks to isolate content to that particular stack.
 * compatibility ++;
 * Eliminating code redundancy.
 * New functionality flags ( del, truncate ).
