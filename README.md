@@ -1,6 +1,7 @@
 # The pyramid utility
 
-![pyramid0](https://user-images.githubusercontent.com/45916202/91566881-e61d4980-e961-11ea-8ad2-5800327af3bd.jpg)
+![pyramidv2](https://user-images.githubusercontent.com/45916202/111764778-984e3b80-88c9-11eb-8372-e96684604727.jpg)
+
 
 ```Artwork```
 
